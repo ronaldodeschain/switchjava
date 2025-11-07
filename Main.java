@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main{
@@ -12,12 +10,10 @@ public class Main{
         //scanner para receber input
         int opcao = 20;
         Scanner scanner = new Scanner(System.in);
-        //criando listas para acessar no switch
-        List<PessoaFisica> listaDePessoasFisicas = new ArrayList<>();
-        List<PessoaJuridica> listaDePessoasJuridicas = new ArrayList<>();
-        List<Advogado> listaDeAdvogados = new ArrayList<>();
-        List<Juiz> listaDejuizes = new ArrayList<>();
-        List<Processo> listaDeProcessos = new ArrayList<>();
+        Controller controller = new Controller();
+        controller.exibeMenu();
+
+        
 
         PessoaFisica fulano = new PessoaFisica("fulano da silva",
         "email", "endereco", 15784, "57.84", 
@@ -42,38 +38,66 @@ public class Main{
         System.out.println("String do processo 1: "+processo1);
         while(opcao != 0){
             
-                System.out.println("""
-                    
-                ------ Sistema de Cadastro de usuários e processos. -----
-                ------             Digite qual sua opção:           -----
-
-                *   1 - Cadastrar Pessoa Fisica
-                *   2 - Cadastrar Pessoa Juridica
-                *   3 - Cadastrar Advogado
-                *   4 - Cadastrar Juiz
-                *   5 - Cadastrar Processo
-                *   6 - Adicionar pessoa a um processo.
-                *   7 - Adicionar empresa a um processo.
-                *   8 - Adicionar advogado responsável a um processo.
-                *   9 - Adicionar processo a um juiz.
-                *  10 - Listar Pessoas Fisicas.
-                *  11 - Listar Pessoas Juridicas.
-                *  12 - Listar Advogados.
-                *  13 - Listar Juizes.
-                *  14 - Listar Processos.
-                *  15 - Sair da aplicação.
-                """);
+               controller.exibeMenu();
                 if(scanner.hasNextInt()){
                     opcao = scanner.nextInt();
                     scanner.nextLine(); 
                     System.out.println("opcao selecionada: "+opcao);
                 }else{
+                    System.out.println("Deve ser inserido um número inteiro");
                     System.out.println(
-                        "Escolha uma das opções: (deve ser inserido um numero)");
-                    scanner.next(); 
-                    opcao = 20;
+                        "Escolha uma das opções: ");
+                    scanner.next();                     
                 }
-                
+                switch (opcao) {
+                    case 1:
+                        controller.adicionaPessoaFisica();
+                        break;
+                    case 2:
+                        controller.adicionarPessoaJuridica();
+                        break;
+                    case 3:
+                        controller.adicionarAdvogado();
+                        break;
+                    case 4:
+                        controller.adicionarJuiz();
+                        break;
+                    case 5:
+                       controller.adicionarProcesso();
+                        break;
+                    case 6:
+                        controller.adicionarPessoaNoProcesso();
+                        break;
+                    case 7:
+                        //adicionar empresa a um processo
+                        break;
+                    case 8:
+                        //adicionar advogado responsável a um processo
+                        break;
+                    case 9:
+                        //adicionar processo a um juiz
+                        break;
+                    case 10:
+                        //listar pessoas fisicas
+                        break;
+                    case 11:
+                        //listar pessoas juridicas
+                        break;
+                    case 12:
+                        //listar advogados
+                        break;
+                    case 13:
+                        //listar juizes
+                        break;
+                    case 14:
+                        //listar processos
+                        break;
+                    case 15:
+                        //sair da aplicação
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
                 
         }
         
