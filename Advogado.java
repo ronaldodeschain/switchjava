@@ -14,5 +14,11 @@ public class Advogado extends Pessoa{
     public void setOab(String oab) {
         this.oab = oab;
     }
+
+    @Override
+    public String toString() {
+        return getNome()+"\nCPF: "+getOab()+"\n";
+    }
+
     
 }

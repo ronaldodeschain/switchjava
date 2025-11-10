@@ -2,25 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Representa um processo judicial no sistema.
+ * Contém informações sobre o código, status, e as partes envolvidas
+ * (advogado, juiz, pessoas físicas e jurídicas).
+ */
 class Processo {
+    // Atributos da classe Processo
     private String codigoProcesso;
     private String statusProcesso;
-    private Advogado advogadoResponsavel; 
+    private Advogado advogadoResponsavel;
+    private Juiz juizResponsavel; 
     private List<PessoaFisica> listaDePessoasFisicas = new ArrayList<>();
     private List<PessoaJuridica> listaDePessoasJuridicas = new ArrayList<>();
-
     
     
-    //sera que preciso desse construtor?
+    
     public Processo(String codigoProcesso, String statusProcesso) {
         this.codigoProcesso = codigoProcesso;
         this.statusProcesso = statusProcesso;
-    }
-    public Processo(String codigoProcesso, String statusProcesso, 
-                    Advogado advogadoResponsavel) {
-        this.codigoProcesso = codigoProcesso; 
-        this.statusProcesso = statusProcesso;
-        this.advogadoResponsavel = advogadoResponsavel;
     }
     public String getCodigoProcesso() {
         return codigoProcesso;
@@ -43,6 +43,13 @@ class Processo {
         this.advogadoResponsavel = advogadoResponsavel;
     }
     
+    public Juiz getJuizResponsavel() {
+        return juizResponsavel;
+    }
+
+    public void adicionaJuizResponsavel(Juiz juizResponsavel) {
+        this.juizResponsavel = juizResponsavel;
+    }
     
     public List<PessoaFisica> getListaDePessoasFisicas() {
         return listaDePessoasFisicas;
@@ -56,7 +63,14 @@ class Processo {
     public void adicionaPessoaJuridica(PessoaJuridica pessoaJuridica) {
         this.listaDePessoasJuridicas.add(pessoaJuridica);
     }
-    //me puxei xD
+
+    /**
+     * Sobrescreve o método toString() para fornecer uma representação textual 
+     * do objeto Processo.
+     * A saída é formatada dinamicamente, mostrando os dados do advogado, juiz 
+     * e das listas
+     * de pessoas e empresas apenas se eles não forem nulos ou vazios.
+     */
     @Override
     public String toString() {
         String nomesPessoasFisicas = listaDePessoasFisicas.stream()
@@ -70,6 +84,8 @@ class Processo {
                 ", statusProcesso=" + statusProcesso +
                 (advogadoResponsavel != null ? ", Advogado: " + 
                 advogadoResponsavel.getNome() : "") +
+                (juizResponsavel != null ? ", Juiz: " + 
+                juizResponsavel.getNome() : "") +
                 (!listaDePessoasFisicas.isEmpty() ? 
                 ", Pessoas envolvidas no processo: ["
                 + nomesPessoasFisicas + "]" : "") +

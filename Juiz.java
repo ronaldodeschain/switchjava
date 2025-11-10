@@ -15,5 +15,8 @@ public class Juiz extends Pessoa{
     public void setCarteiraMagistrado(String carteiraMagistrado) {
         this.carteiraMagistrado = carteiraMagistrado;
     }
-    
+    @Override
+    public String toString() {
+        return getNome()+"\nCarteira de Magistrado: "+getCarteiraMagistrado()+"\n";
+    }
 }

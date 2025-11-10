@@ -27,7 +27,7 @@ public class PessoaFisica extends Pessoa {
 
     @Override
     public String toString() {
-        return getNome()+"\nCPF: "+getCpf()+"\nidade: "+getIdade();
+        return getNome()+"\nCPF: "+getCpf()+"\nidade: "+getIdade()+"\n";
     }
 
     
